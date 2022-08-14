@@ -1,0 +1,73 @@
+version: "3.8"
+services:
+    server_first:
+        build:
+            context: ./app
+        environment:
+          - NAME=First
+        ports:
+            - "8005:5000"
+        container_name: server_first
+        networks:
+          - backbone
+    # server_second:
+    #     build:
+    #         context: ./app
+    #     environment:
+    #      - NAME=Second
+    #     ports:
+    #         - "8006:5000"
+    #     container_name: server_second
+    #     networks:
+    #       - backbone
+    # server_third:
+    #     build:
+    #         context: ./app
+    #     environment:
+    #      - NAME=third
+    #     ports:
+    #         - "8007:5000"
+    #     container_name: server_third
+    #     networks:
+    #       - backbone
+    # server_fourth:
+    #     build:
+    #         context: ./app
+    #     environment:
+    #      - NAME=fourth
+    #     ports:
+    #         - "8008:5000"
+    #     container_name: server_fourth
+    #     networks:
+    #       - backbone
+    # server_fifth:
+    #     build:
+    #         context: ./app
+    #     environment:
+    #      - NAME=fifth
+    #     ports:
+    #         - "8009:5000"
+    #     container_name: server_fifth
+    #     networks:
+    #       - backbone
+    # server_sixth:
+    #     build:
+    #         context: ./app
+    #     environment:
+    #      - NAME=sixth
+    #     ports:
+    #         - "8010:5000"
+    #     container_name: server_sixth
+    #     networks:
+    #       - backbone
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+            - "80:80"
+        networks:
+          - backbone
+networks:
+  backbone:
+    driver: bridge
