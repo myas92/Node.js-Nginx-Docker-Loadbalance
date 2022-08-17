@@ -1,13 +1,43 @@
 version: "3.8"
 services:
-    server_first:
+    server_nginx_first:
         build:
             context: ./app
         environment:
-          - NAME=First
+          - NODE_ENV=First
         ports:
             - "8001:5000"
-        container_name: server_first
+        container_name: server_nginx_first
+        networks:
+          - backbone
+    server_nginx_second:
+        build:
+            context: ./app
+        environment:
+         - NODE_ENV=Second
+        ports:
+            - "8002:5000"
+        container_name: server_nginx_second
+        networks:
+          - backbone
+    server_nginx_third:
+        build:
+            context: ./app
+        environment:
+         - NODE_ENV=third
+        ports:
+            - "8003:5000"
+        container_name: server_nginx_third
+        networks:
+          - backbone
+    server_nginx_fourth:
+        build:
+            context: ./app
+        environment:
+         - NODE_ENV=fourth
+        ports:
+            - "8004:5000"
+        container_name: server_nginx_fourth
         networks:
           - backbone
     nginx:
